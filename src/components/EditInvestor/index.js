@@ -89,6 +89,11 @@ class EditInvestor extends React.Component {
                                          ''
                                         } />
                 </div>
+                <div style={{color: 'red'}}>
+                  {this.state.stage === 'meeting' && (!this.state.meetingTime || this.state.meetingTime.length === 0) ?
+                    'Please schedule a meeting time' :
+                    ''}
+                </div>
                 <div>
                   Notes:
                 <input className='w-100 pa3 mv2'
@@ -163,7 +168,7 @@ const EDIT_INVESTOR_MUTATION = gql`
 `
 
 const CREATE_MEETING_MUTATION = gql`
-  mutation CreateMeetingMutation($investor_id: Id!) {
+  mutation CreateMeetingMutation($investor_id: ID!) {
     create_meeting(investor_id: $investor_id) {
       id
       time

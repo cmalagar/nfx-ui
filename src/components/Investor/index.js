@@ -70,6 +70,17 @@ class Investor extends React.Component {
               Meeting: <DateTimePicker onChange={this.handleEditMeetingTime} value={new Date(this.state.meetingDate.time)}/>
             </div>
           }
+          <div style={{color: 'red'}}>
+            {
+              this.state.stage &&
+              this.state.stage === 'meeting' &&
+              (!this.state.meetingDate ||
+              !this.state.meetingDate.time &&
+              this.state.meetingDate.time.length === 0) ?
+              'Please schedule a meeting time' : 
+              ''
+            }
+          </div>
           <div>Interest Level: 
             <select value={this.state.interest || 'low'} 
                     onChange={this.handleEditInterest}>
